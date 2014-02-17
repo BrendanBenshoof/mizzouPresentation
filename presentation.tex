@@ -148,29 +148,97 @@
 \subsection{The Byzentine Generals Problem}
 
 \begin{frame}{Key Exchange is Key}
+
+	The most vulnerable point in secure commnuication is exchanging keys.\\
+	With only symetric encyrption, if the adversery sees your key:
+	\begin{itemize}
+		\item{The adversary can read all messages}
+		\item{The adversary can send false messages}
+	\end{itemize}
+	With asymetric encryption, if the adversary can intercept and replace messages from both parties:
+	\begin{itemize}
+		\item{The adversary can read all messages}
+		\item{The adversary can send false messages}
+		\item{The adversary can block legitimate message}
+	\end{itemize}
+	Asymetric encryption just makes it more difficult to intercept communication, not impossible
+
 \end{frame}
 
 \begin{frame}{Trusted Third Parties solve everything}
+
+	If both parties have a secure connection to a trusted third party:
+	\begin{itemize}
+		\item{The third party can be used to verify each other's keys}
+		\item{The third party can be used to detect attempted attacks}
+	\end{itemize}
+
 \end{frame}
 
-\begin{frame}{Trusted Third Parties are centralized points of failure}
+
+\begin{frame}{CAs breached}
+
+	2010: VeriSign CA breached
+	\begin{itemize}
+		\item{Kept secret untill 2012}
+		\item{Full impact not known}
+	\end{itemize}
+	2011: DigiNotar CA breached
+	\begin{itemize}
+		\item{Redirected 300,000 Iranian IP addresses using a fraudulent SSL certificate for google.com}
+	\end{itemize}
+	2012: Comodo CA breached
+	\begin{itemize}
+		\item{85,440 forged certificates}
+		\item{Deemed "To big to fail" and keys were not revoked}
+	\end{itemize}
+	2012-Now: Possible systemic NSA interception of SSL traffic
+
+\end{frame}
+
+
+\begin{frame}{The problems with CAs}
+
+	\begin{itemize}
+		\item{Certificate Authorities get breached}
+		\item{Certificate Authorities are not inclined to tell us when they are breached. Because they lose money.}
+		\item{Certificate Authorities are disinclined to revoke compromised keys}
+		\item{Local goverments have power over Certificate Authortites that secure other contries traffic.}
+	\end{itemize}
+
+	The bottom line: Certificate Authorties are not giving us security
+
 \end{frame}
 
 \section{Proof of Work Chain based Key Distribution}
 
 \begin{frame}{What is a Proof of Work}
+	\begin{itemize}
+		\item{Cryptographic Hash functions are designed to make it hard to find two strings which hash to the same value.}
+		\item{Our best stratagy to find hash collisions is random guessing.}
+		\item{By allowing for partial matches, we can create a challenge with variable difficulty that is quick to check.}
+		\item{We can create a string which acts as proof somebody spend time finding a hash collison.}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{How does Bitcoin Work?}
+	\begin{itemize}
+		\item{The bitcoin protocol is centered around maintaing a global state called a "blockchain"}
+		\item{This state is a list of every transaction ever made."}
+		\item{Periodically, a new block of signed transactions with a proof of work is added}
+		\item{The longer this chain becomes, the more difficult it is to falsify}
+	\end{itemize}
+
+
 \end{frame}
 
 \begin{frame}{A New SSL Protocol}
 	Alice wishes to Start a communication with Bob.\\
 	Alice has setup a CA with Public key: $PK_{C}$\\
 	\begin{itemize}
-		\item{ A$\Rightarrow{}$B: "ClientHello" // Initiate exchange} 
-		\item{ B$\Rightarrow{}$A: $PK_{B}$ // send B's public key}
-		\item{ A$\Rightarrow{}$CA: $E(PK_{CA}$, NONCE) // Sends a key for the stream cipher to teh CA} 
+		\item{ A$\Rightarrow{}CA: E(PK_{CA}, NONCE_{CA})|E(PK_{CA},E(NONCE_{CA},B))$ // Send an encrypted message to the CA with B's info}
+		\item{ CA$\Rightarrow{}B: E( NONCE_{CA}, PK_{B})$ // CA returns B's public key} 
+		\item{ A$\Rightarrow{}B: E(PK_{B}, NONCE_{B})$ //Setup a session key with B}
 	\end{itemize}
 
 
@@ -178,6 +246,7 @@
 
 \begin{frame}{Modifcations to Bitcoin for a key exchange}
 \begin{itemize}
+	\item{Rather than store a list of monitary transactions, we store a list of the ownership and transactions of names}
 	\item{Limit the length of the blockchain to 1 year}
 	\item{Add a 'physical' layer check to authenticate new transactions}
 	\item{Consider alternative incentive methods}

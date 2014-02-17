@@ -1,0 +1,208 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This file is a template using the "beamer" package to create slides for a talk or presentation
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+% MODIFIED by Jonathan Kew, 2008-07-06
+% The header comments and encoding in this file were modified for inclusion with TeXworks.
+% The content is otherwise unchanged from the original distributed with the beamer package.
+
+\documentclass{beamer}
+
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice. 
+
+
+\mode<presentation>
+{
+  \usetheme{Warsaw}
+  % or ...
+
+  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[utf8]{inputenc}
+% or whatever
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[Short Paper Title] % (optional, use only with long paper titles)
+{Reevaluating The Adversary Model for DNS Security}
+
+\subtitle
+{Depending on The Kindness of Strangers} % (optional)
+
+\author[Author, Another] % (optional, use only with lots of authors)
+{R.~Harrison \and B.~Benshoof}
+% - Use the \inst{?} command only if the authors have different
+%   affiliation.
+
+\institute[] % (optional, but mostly needed)
+{
+  Department of Computer Science\\
+  Geoorgia State University
+}
+ 
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Short Occasion] % (optional)
+{2/20/2014}
+
+\subject{Talks}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+
+
+% If you have a file called "university-logo-filename.xxx", where xxx
+% is a graphic format that can be processed by latex or pdflatex,
+% resp., then you can add a logo as follows:
+
+% \pgfdeclareimage[height=0.5cm]{gsu-logo}{gsu-logo}
+% \logo{\pgfuseimage{gsu-logo}}
+
+
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+%\beamerdefaultoverlayspecification{<+->}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+  % You might wish to add the option [pausesections]
+\end{frame}
+
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:  
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+\section{Introduction to DNS Security}
+
+\subsection[DNS]{What is DNS?}
+
+
+\subsection{How is DNS Secured}
+
+\begin{frame}{SSL/TLS}
+	Alice wishes to Start a communication with Bob.\\
+	Alice already knows the Certificate Authority's Public key: $PK_{C}$\\
+	\begin{itemize}
+		\item{ A$\Rightarrow{}$B: "ClientHello" // Initiate exchange} 
+		\item{ B$\Rightarrow{}$A: $PK_{B}$ signed by $PK_{C}$ // Send the certificate}
+		\item{ A$\Rightarrow{}$B: $E(PK_{B}$, NONCE) // Sends a key for the stream cipher } 
+	\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Certificate Authorities}
+\end{frame}
+
+\begin{frame}{DNSSEC}
+\end{frame}
+
+\section{DNS Adversary Model}
+
+\subsection{The Byzentine Generals Problem}
+
+\begin{frame}{Key Exchange is Key}
+\end{frame}
+
+\begin{frame}{Trusted Third Parties solve everything}
+\end{frame}
+
+\begin{frame}{Trusted Third Parties are centralized points of failure}
+\end{frame}
+
+\section{Proof of Work Chain based Key Distribution}
+
+\begin{frame}{What is a Proof of Work}
+\end{frame}
+
+\begin{frame}{How does Bitcoin Work?}
+\end{frame}
+
+\begin{frame}{A New SSL Protocol}
+	Alice wishes to Start a communication with Bob.\\
+	Alice has setup a CA with Public key: $PK_{C}$\\
+	\begin{itemize}
+		\item{ A$\Rightarrow{}$B: "ClientHello" // Initiate exchange} 
+		\item{ B$\Rightarrow{}$A: $PK_{B}$ // send B's public key}
+		\item{ A$\Rightarrow{}$CA: $E(PK_{CA}$, NONCE) // Sends a key for the stream cipher to teh CA} 
+	\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}{Modifcations to Bitcoin for a key exchange}
+\begin{itemize}
+	\item{Limit the length of the blockchain to 1 year}
+	\item{Add a 'physical' layer check to authenticate new transactions}
+	\item{Consider alternative incentive methods}
+\end{itemize}
+\end{frame}
+
+\section{Future Research Directions}
+
+\begin{frame}{Research Directions}
+\begin{itemize}
+	\item{Imropoved SSL}
+	\item{New DNS distribution Options}
+	\item{Improved Software Lisensing}
+	\item{Greater avalibility of PGP style messaging}
+	\item{Just about anything that needs a key exchange}
+	
+\end{itemize}
+
+
+\end{frame}
+
+
+
+
+
+\end{document}
+
+

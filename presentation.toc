@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.33pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction to DNS Security}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{What is DNS?}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{How is DNS Secured}{3}{0}{1}
+\beamer@sectionintoc {2}{DNS Adversary Model}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{The Byzentine Generals Problem}{6}{0}{2}
+\beamer@sectionintoc {3}{Proof of Work Chain based Key Distribution}{9}{0}{3}
+\beamer@sectionintoc {4}{Future Research Directions}{12}{0}{4}
